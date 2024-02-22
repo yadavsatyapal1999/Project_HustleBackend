@@ -5,6 +5,8 @@ const admin = new mongoose.Schema({
   password: { type: String, required: true },  // for password
 });
 
+admin.index({email : 1},{unique :true})
+
 const admn = mongoose.model("Admin", admin);
 
 module.exports = admn;
