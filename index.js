@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors')
+const post = require('./Routes/newpost');
+const admin = require('./Routes/newAdmin');
+
 
 const app = express();
 
@@ -19,6 +22,9 @@ mongoose.connect(process.env.mongoose).then(()=>{
 .catch((err)=>{
     console.log("connection to DB failed")
 })
+
+app.use('/admin',admin);
+app.use('/',post)
 
 
 app.listen(8080 , ()=>{

@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 adminrouter.post("/new/admin", async (req, res) => {
+  console.log("new admin creation")
   const { email, password } = req.body;
 
   bcrypt
@@ -21,6 +22,7 @@ adminrouter.post("/new/admin", async (req, res) => {
       user
         .save()
         .then((result) => {
+          console.log("new admin created")
           res.status(200).json({
             message: "Admin Created Sucessfully",
           });
@@ -40,11 +42,13 @@ adminrouter.post("/new/admin", async (req, res) => {
 
 adminrouter.post("/admin/login", async (req, res) => {
   const { email, password } = req.body;
+  console.log("admin login")
 
   Admin.findOne({ email: email })
     .then((user) => {
       if (user) {
         bcrypt.compare(password, user.password).then((response) => {
+          console.log("admin login sucessfull")
           const jwttoken = jwt.sign(
             {
               email: user.email,
@@ -56,6 +60,7 @@ adminrouter.post("/admin/login", async (req, res) => {
             }
           );
 
+          console.log(jwttoken)
           res.status(200).json({
             message: "Login Sucessfully",
             token: jwttoken,

@@ -2,7 +2,7 @@
   "name": "news_site-backend",
   "version": "1.0.0",
   "description": "Backend only for my personal site",
-  "main": "Express.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
