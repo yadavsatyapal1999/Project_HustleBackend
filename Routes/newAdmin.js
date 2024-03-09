@@ -49,13 +49,13 @@ adminrouter.post("/admin/login", async (req, res) => {
       if (user) {
         bcrypt.compare(password, user.password).then((response) => {
           console.log("admin login sucessfull")
-let payload = {
+         let payload = {
               email: user.email,
               id: user._id,
             }
-          let secret = "satyanews"
-          
-          const jwttoken = jwt.sign(payload,secret,{'2h'});
+          const secret = "satyanews"
+          const expiresIn = '1h';
+          const jwttoken = jwt.sign(payload,secret,{expiresIn});
 
           console.log(jwttoken)
           res.status(200).json({
